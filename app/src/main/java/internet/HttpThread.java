@@ -17,22 +17,21 @@ import oslek.cartunator.RechargeActivity;
 
 public class HttpThread extends Thread {
 
-    public URL urlSavePHP;
+    public URL urlPHP;
     private HttpURLConnection httpURLConnection;
     private String output;
 
     public void run() {
         connect();
-
     }
 
-    public void setUrlSavePHP(URL url) {
-        this.urlSavePHP = url;
+    public void setUrlPHP(URL url) {
+        this.urlPHP = url;
     }
 
     public void connect() {
         try {
-            httpURLConnection = (HttpURLConnection) urlSavePHP.openConnection();
+            httpURLConnection = (HttpURLConnection) urlPHP.openConnection();
             httpURLConnection.setRequestMethod("GET");
             httpURLConnection.connect();
 

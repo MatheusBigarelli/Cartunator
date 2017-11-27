@@ -32,7 +32,6 @@ public class HttpSaveData{
         strBuilderURL.append(this.credit);
         strBuilderURL.append("00");
         try {
-            System.out.println(strBuilderURL.toString());
             urlSavePHP = new URL(strBuilderURL.toString());
         } catch (MalformedURLException e) {}
     }
@@ -40,7 +39,7 @@ public class HttpSaveData{
 
     public void connect() {
         HttpThread httpThread = new HttpThread();
-        httpThread.setUrlSavePHP(urlSavePHP);
+        httpThread.setUrlPHP(urlSavePHP);
         httpThread.start();
         output = httpThread.getOutput();
     }

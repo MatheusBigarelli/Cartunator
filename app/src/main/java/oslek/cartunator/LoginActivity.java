@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import internet.HttpAuthentication;
+import internet.LoginAuth;
 import user.User;
 
 public class LoginActivity extends AppCompatActivity {
@@ -77,8 +78,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public boolean authenticateUser() {
-//        if (httpAuthentication.isUserValid())
-//            return true;
-        return true;
+        LoginAuth loginAuth = new LoginAuth(user.ra, user.password);
+
+        if (loginAuth.credentialsAreOk()) {
+            String[] userInfo = loginAuth.getUserInfo();
+
+            user.name = userInfo[LoginAuth.NAME];
+            user.credit = userInfo[LoginAuth.CREDIT];
+
+            return true;
+        }
+        
+        return false;
     }
 }
