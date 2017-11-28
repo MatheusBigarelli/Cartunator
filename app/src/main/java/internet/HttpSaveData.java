@@ -3,7 +3,6 @@ package internet;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import oslek.cartunator.RechargeActivity;
 
 /**
  * Created by Matheus on 11/25/17.
@@ -17,7 +16,7 @@ public class HttpSaveData{
     private String output;
     private String[] services = {
             "http://192.168.43.178:6969/arduino/savedata.php?flag=1&",
-            "http://192.168.1.103:80/apps/Cartunator/update-user-credit.php?ra="
+            "http://10.10.36.103:80/apps/Cartunator/update-user-credit.php?ra="
     };
     private int requiredService;
     public static int SAVE_LEO = 0;

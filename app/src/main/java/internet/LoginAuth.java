@@ -1,9 +1,5 @@
 package internet;
 
-import java.lang.Thread;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import oslek.cartunator.LoginActivity;
 import user.User;
 
@@ -28,12 +24,6 @@ public class LoginAuth {
     }
 
     public boolean credentialsAreOk() {
-//    	String service = "http://192.168.1.103:80/apps/Cartunator/check-credentials.php?ra=";
-//		HttpGetData httpGetData = new HttpGetData(service);
-//		httpGetData.setData(user);
-//		httpGetData.connect();
-//
-//    	queryResult = (String) httpGetData.getOutput();
 
 		HttpGetData httpGetData = new HttpGetData(HttpGetData.CHECK_CREDENTIALS);
 		httpGetData.setData(user);
@@ -51,26 +41,6 @@ public class LoginAuth {
     }
 
     public void setUserInfo() {
-//    	StringBuilder query = new StringBuilder();
-//    	query.append("http://192.168.1.103:80/apps/Cartunator/get-user-info.php?ra=");
-//    	query.append(user.ra);
-//
-//    	System.out.println("Query: " + query.toString());
-//
-//    	HttpThread httpThread = new HttpThread();
-//		try {
-//			httpThread.setUrlPHP(new URL(query.toString()));
-//		} catch (MalformedURLException e) {
-//			e.printStackTrace();
-//		}
-//		httpThread.start();
-//
-//		waitForConnection();
-//
-//    	queryResult = httpThread.getOutput();
-//
-//    	System.out.println("Query result: " + queryResult);
-
 		HttpGetData httpGetData = new HttpGetData(HttpGetData.GET_USER_DATA);
 		httpGetData.setData(user);
 		httpGetData.connect();
@@ -89,12 +59,4 @@ public class LoginAuth {
     public String[] getUserInfo() {
 		return userInfo;
     }
-
-    public void waitForConnection() {
-		//Waits for connection
-		try {
-			Thread.sleep(1000);
-		}
-		catch (Exception e) {}
-	}
 }

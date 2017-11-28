@@ -30,10 +30,6 @@
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SignUpActivity"
-            android:label="@string/title_activity_sign_up"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".RechargeActivity"
             android:label="@string/title_activity_recharge"
             android:theme="@style/AppTheme.NoActionBar"></activity>

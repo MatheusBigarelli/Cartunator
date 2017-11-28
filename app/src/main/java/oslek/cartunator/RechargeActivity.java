@@ -29,15 +29,6 @@ public class RechargeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         buttonsRecharge[0] = (RadioButton) findViewById(R.id.buttonRecharge10);
         buttonsRecharge[1] = (RadioButton) findViewById(R.id.buttonRecharge20);
         buttonsRecharge[2] = (RadioButton) findViewById(R.id.buttonRecharge30);
@@ -47,11 +38,18 @@ public class RechargeActivity extends AppCompatActivity {
     }
 
     public void confirm(View view) {
-        HttpSaveData httpSaveData = new HttpSaveData(HttpSaveData.SAVE_BIGA);
-        httpSaveData.setData(user.ra, getValueOfRecharge());
-        httpSaveData.connect();
+//        HttpSaveData httpSaveData = new HttpSaveData(HttpSaveData.SAVE_BIGA);
+//        httpSaveData.setData(user.ra, getValueOfRecharge());
+//        httpSaveData.connect();
+//
+//        httpSaveData.waitForConnection();
 
-        httpSaveData.waitForConnection();
+
+        HttpSaveData httpSaveDataLeo = new HttpSaveData(HttpSaveData.SAVE_LEO);
+        httpSaveDataLeo.setData(user.ra, getValueOfRecharge());
+        httpSaveDataLeo.connect();
+
+        httpSaveDataLeo.waitForConnection();
 
         updateUserInfo();
 
@@ -69,8 +67,6 @@ public class RechargeActivity extends AppCompatActivity {
         user.ra = userData[LoginAuth.RA];
         user.name = userData[LoginAuth.NAME];
         user.credit = userData[LoginAuth.CREDIT];
-
-        System.out.println("RechargeActivity.user.credit: " + user.credit);
 
         MainActivity mainActivity = MainActivity.context;
         mainActivity.setCurrentUser(user);
