@@ -12,8 +12,8 @@ import user.User;
 public class HttpGetData {
     private StringBuilder query = new StringBuilder();
     private String[] services = {
-        "http://192.168.43.46:80/apps/Cartunator/check-credentials.php?ra=",
-        "http://192.168.43.46:80/apps/Cartunator/get-user-info.php?ra="
+        "http://192.168.43.178:80/apps/Cartunator/check-credentials.php?ra=",
+        "http://192.168.43.178:80/apps/Cartunator/get-user-info.php?ra="
     };
     private int requiredService;
     public static int CHECK_CREDENTIALS = 0;
