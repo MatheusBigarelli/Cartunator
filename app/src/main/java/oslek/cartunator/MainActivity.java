@@ -80,13 +80,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setCurrentUser(User currentUser) {
-        System.out.println(currentUser.name);
         try {
 
-//            user.name = new String(currentUser.name);
-            user.ra = new String(currentUser.ra);
-//            user.credit = new String(currentUser.credit);
-            textHello.setText(new StringBuilder("Olá ").append(user.ra).toString());
+            user.name = currentUser.name;
+            user.ra = currentUser.ra;
+            user.credit = currentUser.credit;
+
+            System.out.println("MainActivity.user.credit: " + user.credit);
+
+            textHello.setText(new StringBuilder("Olá ").append(user.name).toString());
             textCredit.setText(new StringBuilder("Seu saldo é ").append(user.credit).toString());
         } catch (NullPointerException e) {
         }

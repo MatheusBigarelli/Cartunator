@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import internet.HttpAuthentication;
 import internet.LoginAuth;
 import user.User;
 
@@ -22,7 +21,6 @@ public class LoginActivity extends AppCompatActivity {
     private User user = new User();
     private MainActivity mainActivity = MainActivity.context;
     public static LoginActivity context;
-    private HttpAuthentication httpAuthentication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +44,6 @@ public class LoginActivity extends AppCompatActivity {
         editRA = (EditText) findViewById(R.id.editRA);
         editPassword = (EditText) findViewById(R.id.editPassword);
         context = this;
-
-//        httpAuthentication = new HttpAuthentication();
     }
 
 
@@ -71,6 +67,10 @@ public class LoginActivity extends AppCompatActivity {
     public void getUserDataFromEdits() {
         user.ra = editRA.getText().toString();
         user.password = editPassword.getText().toString();
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setUserMain() {

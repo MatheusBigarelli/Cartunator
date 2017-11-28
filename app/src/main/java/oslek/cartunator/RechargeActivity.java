@@ -5,17 +5,20 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import internet.HttpGetData;
 import internet.HttpSaveData;
+import internet.LoginAuth;
 import user.User;
 
 public class RechargeActivity extends AppCompatActivity {
 
     private RadioButton[] buttonsRecharge = new RadioButton[4];
-    public static RechargeActivity context;;
+    public static RechargeActivity context;
     public static User user = new User();
 
 
@@ -44,10 +47,33 @@ public class RechargeActivity extends AppCompatActivity {
     }
 
     public void confirm(View view) {
-        HttpSaveData httpSaveData = new HttpSaveData();
-        httpSaveData.setData( user.ra, getValueOfRecharge());
+        HttpSaveData httpSaveData = new HttpSaveData(HttpSaveData.SAVE_BIGA);
+        httpSaveData.setData(user.ra, getValueOfRecharge());
         httpSaveData.connect();
+
+        httpSaveData.waitForConnection();
+
+        updateUserInfo();
+
         finish();
+    }
+
+    public void updateUserInfo() {
+        HttpGetData httpGetData = new HttpGetData(HttpGetData.GET_USER_DATA);
+        httpGetData.setData(user);
+        httpGetData.connect();
+
+        String output = httpGetData.getOutput();
+        String[] userData = output.split(",");
+
+        user.ra = userData[LoginAuth.RA];
+        user.name = userData[LoginAuth.NAME];
+        user.credit = userData[LoginAuth.CREDIT];
+
+        System.out.println("RechargeActivity.user.credit: " + user.credit);
+
+        MainActivity mainActivity = MainActivity.context;
+        mainActivity.setCurrentUser(user);
     }
 
     public String getValueOfRecharge() {
